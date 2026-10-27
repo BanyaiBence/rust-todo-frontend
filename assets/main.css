@@ -1,0 +1,133 @@
+:root {
+  --bg: #f4f5f7;
+  --surface: #ffffff;
+  --text: #1d2129;
+  --muted: #6b7280;
+  --border: #dde1e6;
+  --accent: #2f6fde;
+  --accent-text: #ffffff;
+  --danger: #c43c3c;
+  --error-bg: #fdecec;
+  --notice-bg: #eaf1fd;
+  color-scheme: light dark;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #16181c;
+    --surface: #202328;
+    --text: #e6e8eb;
+    --muted: #9aa1ab;
+    --border: #343840;
+    --accent: #5b8ff0;
+    --accent-text: #0d1220;
+    --danger: #ef6b6b;
+    --error-bg: #3a2224;
+    --notice-bg: #1f2b40;
+  }
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font: 15px/1.45 system-ui, -apple-system, "Segoe UI", sans-serif;
+}
+
+main {
+  max-width: 640px;
+  margin: 0 auto;
+  padding: 24px 16px 48px;
+}
+
+h1 { margin: 0; font-size: 26px; }
+h2 { margin: 4px 0 16px; font-size: 17px; font-weight: 500; color: var(--muted); }
+
+.card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 16px;
+}
+
+input[type="text"], input[type="password"], textarea {
+  width: 100%;
+  padding: 8px 10px;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  background: var(--bg);
+  color: var(--text);
+  font: inherit;
+}
+textarea { resize: vertical; }
+input:focus, textarea:focus { outline: 2px solid var(--accent); outline-offset: -1px; }
+
+button {
+  padding: 6px 12px;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  background: var(--surface);
+  color: var(--text);
+  font: inherit;
+  cursor: pointer;
+}
+button:hover:not(:disabled) { border-color: var(--accent); }
+button:disabled { opacity: 0.5; cursor: default; }
+button.primary { background: var(--accent); border-color: var(--accent); color: var(--accent-text); font-weight: 600; }
+button.danger { color: var(--danger); }
+button.link { border: none; background: none; padding: 0; color: var(--accent); }
+button.link:hover { text-decoration: underline; }
+
+.error, .notice {
+  margin: 0 0 12px;
+  padding: 8px 12px;
+  border-radius: 6px;
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+}
+.error { background: var(--error-bg); color: var(--danger); }
+.notice { background: var(--notice-bg); }
+
+/* Login / register */
+.auth { max-width: 380px; margin: 48px auto 0; }
+.auth form { display: flex; flex-direction: column; gap: 12px; }
+.auth label { display: flex; flex-direction: column; gap: 4px; font-size: 13px; color: var(--muted); }
+.auth .primary { margin-top: 4px; padding: 8px; }
+.hint, .server { margin: 0; font-size: 12px; color: var(--muted); }
+.switch { margin: 16px 0 8px; font-size: 14px; }
+
+/* Todo list */
+header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 16px; }
+.account { display: flex; align-items: center; gap: 8px; }
+.account span { color: var(--muted); margin-right: 4px; }
+
+.new-todo { display: grid; grid-template-columns: 1fr auto; gap: 8px; margin-bottom: 16px; }
+.new-todo textarea { grid-column: 1; }
+.new-todo button { grid-column: 2; grid-row: 1 / span 2; align-self: start; }
+
+.filters { display: flex; gap: 6px; margin-bottom: 12px; }
+.filters button.selected { background: var(--accent); border-color: var(--accent); color: var(--accent-text); }
+
+.todos { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 8px; }
+.todo {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 12px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+}
+.todo input[type="checkbox"] { margin-top: 4px; width: 16px; height: 16px; accent-color: var(--accent); flex: none; }
+.todo .body { flex: 1; min-width: 0; }
+.todo .title { overflow-wrap: anywhere; }
+.todo .description { margin: 4px 0 0; color: var(--muted); font-size: 14px; white-space: pre-wrap; overflow-wrap: anywhere; }
+.todo.done .title { text-decoration: line-through; color: var(--muted); }
+.todo .actions { display: flex; gap: 6px; flex: none; }
+.todo.editing form { flex: 1; display: flex; flex-direction: column; gap: 8px; }
+.todo.editing .actions { justify-content: flex-end; }
+
+.empty { text-align: center; color: var(--muted); padding: 32px 0; }
